@@ -15,6 +15,6 @@ use App\Http\Controllers\WalletController;
 |
 */
 
-Route::resource('photos', WalletController::class)->resource([
-    'index', 'create', 'store'
-]);
+//Route::resource('photos', WalletController::class)->resource([
+//    'index', 'create', 'store'
+//]);
