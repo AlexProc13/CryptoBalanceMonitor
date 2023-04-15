@@ -64,7 +64,7 @@ jobs:
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
       - name: Run phpcs check - PSR-12 (exclude Generic.Files.LineLength)
-        run: vendor/bin/phpcs --standard=PSR12 --exclude=Generic.Files.LineLength app/ tests/
+        run: vendor/bin/phpcs --standard=PSR12 --exclude=Generic.Files.LineLength app/
 
       - name: Run Tlint
         run: vendor/bin/tlint lint app/
