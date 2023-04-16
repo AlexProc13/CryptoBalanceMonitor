@@ -8,7 +8,7 @@ return [
         //...
     ],
     'walletProviders' => [
-        'BTC' => \App\Servises\Wallets\BTC\LTCWallet::class,
+        'BTC' => \App\Servises\Wallets\BTC\BTCWallet::class,
         'LTC' => \App\Servises\Wallets\LTC\LTCWallet::class,
         'ETH' => \App\Servises\Wallets\ETH\ETHWallet::class,
         //...
