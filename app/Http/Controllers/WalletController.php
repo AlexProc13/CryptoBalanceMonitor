@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Servises\Wallets\Wallet as WalletService;
 use App\Http\Resources\WalletResource;
 use App\Models\Wallet;
+use App\Servises\Wallets\Currencies\Wallet as WalletService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -20,8 +20,8 @@ class WalletController extends Controller
      */
     public function index(): array
     {
-        define('LIMIT', 100);
-        $wallets = Wallet::with('lastBalance')->paginate(LIMIT);
+        $perPage = 100;
+        $wallets = Wallet::with('lastBalance')->paginate($perPage);
         return [
             'status' => true,
             'total' => $wallets->total(),

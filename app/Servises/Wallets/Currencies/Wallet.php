@@ -1,13 +1,18 @@
 <?php
 
-namespace App\Servises\Wallets;
+namespace App\Servises\Wallets\Currencies;
 
 use App\Models\HistoryBalance;
 use Illuminate\Support\Collection;
 
 abstract class Wallet
 {
-    abstract public function getSource();
+    /**
+     * @return Source
+     */
+    abstract public function getSource(): Source;
+
+    abstract public function fromPennyToCoin(string $pennies): string;
 
     /**
      * @param Collection $wallets
@@ -17,8 +22,7 @@ abstract class Wallet
     {
         $addresses = $wallets->pluck('address')->toArray();
         $source = $this->getSource();
-        $balancePerAddress = $source->getBalance($addresses[0]);
-        dd($balancePerAddress);
+        $balancePerAddress = $source->getBalances($addresses);
         foreach ($wallets as $wallet) {
             if (!isset($balancePerAddress[$wallet->address])) {
                 continue;

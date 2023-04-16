@@ -3,9 +3,9 @@
 namespace App\Console\Commands;
 
 use App\Models\Wallet;
+use App\Servises\Wallets\Currencies\Wallet as WalletService;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Collection;
-use App\Servises\Wallets\Wallet as WalletService;
 
 class GetBalanceData extends Command
 {
@@ -28,22 +28,22 @@ class GetBalanceData extends Command
      */
     public function handle()
     {
-        define('LIMIT', 30);//depends on api's limits && we use `get` we have to consider this
         $currencies = config('wallets.currencies');
         foreach ($currencies as $currency => $currencyId) {
-            $this->line('START ' . $currency);
+            $this->line('RUN... ' . $currency);
             //todo what to do if one of sources not working - need discuss
-            $this->updateData($currency, $currencyId);
+            $this->updateData($currencyId);
             sleep(1);
         }
         $this->line('Done');
     }
 
-    protected function updateData($currency, $currencyId)
+    protected function updateData($currencyId)
     {
-        $walletService = app()->make(WalletService::class, ['currency' => $currency]);
+        $chunkSize = 30;//todo depends on api's limits && we use `get` we have to consider this
+        $walletService = app()->make(WalletService::class, ['currencyId' => $currencyId]);
         Wallet::where('type', $currencyId)->with('lastBalance')
-            ->chunk(LIMIT, function (Collection $wallets) use ($walletService) {
+            ->chunk($chunkSize, function (Collection $wallets) use ($walletService) {
             $walletService->updateBalances($wallets);
             usleep(100000);
         });

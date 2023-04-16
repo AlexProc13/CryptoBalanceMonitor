@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Servises\Wallets\ETH;
+namespace App\Servises\Wallets\Currencies\ETH;
 
 use kornrunner\Keccak;
 

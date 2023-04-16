@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
+use App\Servises\Wallets\Currencies\Wallet;
 use Exception;
-use App\Servises\Wallets\Wallet;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -15,11 +15,18 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(Wallet::class, function ($app, $params) {
             //check currency
-            if (!isset($params['currency'])) {
+            if (!isset($params['currency']) && !isset($params['currencyId'])) {
                 throw new Exception('wrong currency');
             }
+
+            //get by id or code
+            if (isset($params['currencyId'])) {
+                $currency = array_flip(config('wallets.currencies'))[$params['currencyId']];
+            } else {
+                $currency = $params['currency'];
+            }
+
             //check provider
-            $currency = $params['currency'];
             $walletProviders = config('wallets.walletProviders');
             if (!isset($walletProviders[$currency])) {
                 throw new Exception('wrong currency');

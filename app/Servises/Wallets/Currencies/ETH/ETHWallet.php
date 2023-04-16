@@ -1,21 +1,23 @@
 <?php
 
-namespace App\Servises\Wallets\ETH;
+namespace App\Servises\Wallets\Currencies\ETH;
 
-use App\Servises\Wallets\Source;
-use Exception;
-use App\Models\HistoryBalance;
-use App\Servises\Wallets\Wallet;
-use Illuminate\Support\Collection;
-use App\Models\Wallet as WalletModel;
+use App\Servises\Wallets\Currencies\Source;
+use App\Servises\Wallets\Currencies\Wallet;
+use App\Servises\Wallets\Clients\EtherscanClient;
 
 class ETHWallet extends Wallet
 {
     use ETHWalletTrait;
 
-    public function toCurrency($params): string
+    /**
+     * @param $pennies
+     * @return string
+     */
+    public function fromPennyToCoin($pennies): string
     {
-        return 1;
+        //todo convert
+        return $pennies;
     }
 
     public function isAddress(string $address): bool
@@ -30,6 +32,7 @@ class ETHWallet extends Wallet
 
     public function getSource(): Source
     {
-        return new ETHSource();
+        $client = new EtherscanClient();
+        return new ETHSource($client);
     }
 }
