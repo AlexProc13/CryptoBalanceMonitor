@@ -15,6 +15,6 @@ use App\Http\Controllers\WalletController;
 |
 */
 
-Route::resource('photos', WalletController::class)->only([
-    'index', 'create', 'store'
+Route::resource('wallets', WalletController::class)->only([
+    'index', 'show', 'store'
 ]);

@@ -2,8 +2,10 @@
 
 namespace App\Exceptions;
 
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use App;
 use Throwable;
+use Illuminate\Http\Request;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
 {
@@ -41,8 +43,14 @@ class Handler extends ExceptionHandler
      */
     public function register(): void
     {
-        $this->reportable(function (Throwable $e) {
-            //
+        $this->renderable(function (Throwable $e, Request $request) {
+            if ($request->is('api/*')) {
+                $data = ['status' => false];
+                if (!App::environment(['production'])) {
+                    $data['msg'] = $e->getMessage();
+                }
+                return response()->json($data);
+            }
         });
     }
 }

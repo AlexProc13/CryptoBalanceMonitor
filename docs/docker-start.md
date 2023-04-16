@@ -14,7 +14,7 @@ DB_PASSWORD=monitor
 
 #for getting DOCKER_UID use `id` command or run `echo ${UID}`
 DOCKER_UID={YOUR_SYSTEM_UID}
-DOCKER_GID={YOUR_SYSTEM_GID}
+SOURCE_ETH={KEY_FROM_etherscan}//can copy from .env.example
 ```
 
 - run composer: 
