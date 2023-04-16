@@ -3,13 +3,15 @@
 return [
     'currencies' => [
         'BTC' => 1,
-      //  'LTC' => 2,
-      //  'ETH' => 3,
+        'LTC' => 2,
+        'ETH' => 3,
         //...
     ],
     'walletProviders' => [
-    //    'ETH' => \App\Servises\Wallets\ETH\ETHWallet::class,
-        'BTC' => \App\Servises\Wallets\BTC\BTCWallet::class,
+        'BTC' => \App\Servises\Wallets\BTC\LTCWallet::class,
+        'LTC' => \App\Servises\Wallets\LTC\LTCWallet::class,
+        'ETH' => \App\Servises\Wallets\ETH\ETHWallet::class,
+        //...
     ],
     'sources' => [
         'ETH' => ['key' => env('SOURCE_ETH')]

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Servises\Wallets\BTC;
+namespace App\Servises\Wallets\LTC;
 
 use App\Servises\Wallets\ETH\ETHSource;
 use App\Servises\Wallets\ETH\ETHWalletTrait;
@@ -11,7 +11,7 @@ use App\Servises\Wallets\Wallet;
 use Illuminate\Support\Collection;
 use App\Models\Wallet as WalletModel;
 
-class BTCWallet extends Wallet
+class LTCWallet extends Wallet
 {
 
     public function isAddress(string $address): bool

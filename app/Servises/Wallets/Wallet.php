@@ -29,6 +29,7 @@ abstract class Wallet
             if ($balance === $currentBalance) {
                 continue;
             }
+
             HistoryBalance::create([
                 'wallet_id' => $wallet->id,
                 'balance' => $currentBalance
