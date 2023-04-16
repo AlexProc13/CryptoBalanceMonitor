@@ -11,8 +11,7 @@ class BTCSource extends Source
 
     public function getBalance($address): string
     {
-        $key = config('wallets.sources.ETH.key');
-        $response = $this->call(['account', 'balance', $address, $key]);
+        $response = $this->call([implode(',', $address)]);
         $balance = 0;
         if (isset( $response['data'][$address])) {
             $balance = $response['data'][$address];

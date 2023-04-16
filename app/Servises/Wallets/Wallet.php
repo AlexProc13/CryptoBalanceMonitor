@@ -17,7 +17,8 @@ abstract class Wallet
     {
         $addresses = $wallets->pluck('address')->toArray();
         $source = $this->getSource();
-        $balancePerAddress = $source->getBalances($addresses);
+        $balancePerAddress = $source->getBalance($addresses[0]);
+        dd($balancePerAddress);
         foreach ($wallets as $wallet) {
             if (!isset($balancePerAddress[$wallet->address])) {
                 continue;
