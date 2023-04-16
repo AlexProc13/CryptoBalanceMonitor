@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Servises\Wallets\Clients;
+
 class BlockchairClient extends Client
 {
     public function __construct()

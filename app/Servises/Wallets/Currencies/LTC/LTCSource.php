@@ -14,7 +14,7 @@ class LTCSource extends Source
     {
         $response = $this->client->call(['litecoin', $address]);
         $balance = 0;
-        if (isset( $response['data'][$address])) {
+        if (isset($response['data'][$address])) {
             $balance = $response['data'][$address];
         }
         return $balance;

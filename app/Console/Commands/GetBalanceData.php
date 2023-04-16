@@ -44,8 +44,8 @@ class GetBalanceData extends Command
         $walletService = app()->make(WalletService::class, ['currencyId' => $currencyId]);
         Wallet::where('type', $currencyId)->with('lastBalance')
             ->chunk($chunkSize, function (Collection $wallets) use ($walletService) {
-            $walletService->updateBalances($wallets);
-            usleep(100000);
-        });
+                $walletService->updateBalances($wallets);
+                usleep(100000);
+            });
     }
 }
