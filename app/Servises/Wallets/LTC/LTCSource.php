@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Http;
 
 class LTCSource extends Source
 {
-    public const URL = 'https://api.blockchair.com/bitcoin/addresses/balances?addresses=%s';
+    public const URL = 'https://api.blockchair.com/litecoin/addresses/balances?addresses=%s';
 
     public function getBalance($address): string
     {

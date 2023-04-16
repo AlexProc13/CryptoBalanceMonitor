@@ -28,6 +28,7 @@ class GetBalanceData extends Command
      */
     public function handle()
     {
+        define('LIMIT', 30);//depends on api's limits && we use `get` we have to consider this
         $currencies = config('wallets.currencies');
         foreach ($currencies as $currency => $currencyId) {
             $this->line('START ' . $currency);
@@ -40,7 +41,6 @@ class GetBalanceData extends Command
 
     protected function updateData($currency, $currencyId)
     {
-        define('LIMIT', 30);//depends on api's limits && we use `get` we have to consider this
         $walletService = app()->make(WalletService::class, ['currency' => $currency]);
         Wallet::where('type', $currencyId)->with('lastBalance')
             ->chunk(LIMIT, function (Collection $wallets) use ($walletService) {
