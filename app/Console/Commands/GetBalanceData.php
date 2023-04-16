@@ -3,9 +3,9 @@
 namespace App\Console\Commands;
 
 use App\Models\Wallet;
-use App\Servises\Wallets\Wallet as WalletService;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Collection;
+use App\Servises\Wallets\Wallet as WalletService;
 
 class GetBalanceData extends Command
 {
