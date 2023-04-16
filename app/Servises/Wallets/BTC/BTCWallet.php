@@ -7,7 +7,6 @@ use App\Servises\Wallets\Wallet;
 
 class BTCWallet extends Wallet
 {
-
     public function isAddress(string $address): bool
     {
         //todo use other way
