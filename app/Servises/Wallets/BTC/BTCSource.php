@@ -11,7 +11,8 @@ class BTCSource extends Source
 
     public function getBalance($address): string
     {
-        $response = $this->call([implode(',', $address)]);
+        $response = $this->call([$address]);
+        dd($response);
         $balance = 0;
         if (isset( $response['data'][$address])) {
             $balance = $response['data'][$address];
