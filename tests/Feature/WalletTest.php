@@ -69,8 +69,8 @@ class WalletTest extends TestCase
     {
         //todo by facker
         $addresses = [
-            'ltc1qzvcgmntglcuv4smv3lzj6k8szcvsrmvk0phrr9wfq8w493r096ssm2fgsw',
-            'ltc1qzvcgmntglcuv4smv3lzj6kfsdfsdfs8szcvsrmvk0phrr2fgsw'
+            'MQSs17ECe51kqhkFPQY98wiyPvGuK5iCB6',
+            'MQSs17ECe51kqhkFPQY98wiyPvGuK5iCB6'
         ];
         $data = ['currency' => 'LTC', 'address' => fake()->randomElement($addresses),];
         $response = $this->json(Request::METHOD_POST, route('wallets.index'), $data);
