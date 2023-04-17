@@ -44,8 +44,8 @@ class GetBalanceData extends Command
         //blockchair uo to 25000, etherscan ? need research
         $chunkSize = 30;
         $walletService = app()->make(WalletService::class, ['currencyId' => $currencyId]);
-        Wallet::where('type', $currencyId)->with('lastBalance')
-            ->chunk($chunkSize, function (Collection $wallets) use ($walletService) {
+        Wallet::where('type', $currencyId)
+            ->with('lastBalance')->chunk($chunkSize, function (Collection $wallets) use ($walletService) {
                 $walletService->updateBalances($wallets);
                 usleep(100000);
             });
