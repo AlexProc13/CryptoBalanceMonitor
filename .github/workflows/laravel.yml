@@ -80,9 +80,6 @@ jobs:
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.ci', '.env');"
 
-      - name: Copy .env
-        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
-
       - name: Run phpcs check - PSR-12 (exclude Generic.Files.LineLength)
         run: vendor/bin/phpcs --standard=PSR12 --exclude=Generic.Files.LineLength app/
 
