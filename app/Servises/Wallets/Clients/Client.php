@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Http;
 
 abstract class Client
 {
-    /**
-     *
-     */
     public const TIME_OUT = 10;
 
     /**

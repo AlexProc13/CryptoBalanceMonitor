@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Http;
 
 class ETHSource extends Source
 {
+    /**
+     * @param $address
+     * @return string
+     */
     public function getBalance($address): string
     {
         $key = config('wallets.sources.ETH.key');
@@ -14,6 +18,10 @@ class ETHSource extends Source
         return $response['result'];
     }
 
+    /**
+     * @param $addresses
+     * @return array
+     */
     public function getBalances($addresses): array
     {
         $key = config('wallets.sources.ETH.key');

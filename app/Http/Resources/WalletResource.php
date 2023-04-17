@@ -23,8 +23,7 @@ class WalletResource extends JsonResource
             'balance' => $this->lastBalance->balance ?? 0,
             'createdAt' => $this->created_at,
             'balanceChanged' => $this->lastBalance->created_at ?? $this->created_at,
-            'currency' => array_flip($currencies)[$this->type],//it is not in task - ir is for me to split addresses
-
+            'coin' => array_flip($currencies)[$this->type],//it is not in task - it is for me to split addresses
         ];
     }
 }

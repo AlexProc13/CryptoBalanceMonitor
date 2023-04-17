@@ -22,7 +22,7 @@ class ETHWallet extends Wallet
 
     public function isAddress(string $address): bool
     {
-        //See: https://github.com/ethereum/web3.js/blob/7935e5f/lib/utils/utils.js#L415
+        //copy copy from https://ethereum.stackexchange.com/questions/1374/how-can-i-check-if-an-ethereum-address-is-valid
         if ($this->matchesPattern($address)) {
             return $this->isAllSameCaps($address) ?: $this->isValidChecksum($address);
         }

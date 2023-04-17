@@ -20,6 +20,7 @@ abstract class Wallet
      */
     public function updateBalances(Collection $wallets): bool
     {
+        //todo catch errors if it would be neeeded
         $addresses = $wallets->pluck('address')->toArray();
         $source = $this->getSource();
         $balancePerAddress = $source->getBalances($addresses);

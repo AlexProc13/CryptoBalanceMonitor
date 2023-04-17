@@ -5,7 +5,8 @@ namespace App\Servises\Wallets\Currencies\ETH;
 use kornrunner\Keccak;
 
 /**
- * todo I was in a hurry and copy it
+ * I was in a hurry and copy it
+ * copy from https://ethereum.stackexchange.com/questions/1374/how-can-i-check-if-an-ethereum-address-is-valid
  */
 trait ETHWalletTrait
 {

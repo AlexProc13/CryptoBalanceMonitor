@@ -58,7 +58,7 @@ class WalletController extends Controller
         //create wallet
         DB::beginTransaction();
         Wallet::create(['type' => $currencies[$request->currency], 'address' => $request->address]);
-        //...
+        //...some actions
         DB::commit();
 
         return ['status' => true];

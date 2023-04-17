@@ -12,7 +12,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
+        //update balance data
+        $schedule->command('app:get-balance-data')->everyMinute()
+            ->runInBackground()->withoutOverlapping();
+        //...
     }
 
     /**

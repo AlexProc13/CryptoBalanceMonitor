@@ -40,7 +40,9 @@ class GetBalanceData extends Command
 
     protected function updateData($currencyId)
     {
-        $chunkSize = 30;//todo depends on api's limits && we use `get` we have to consider this
+        //todo $chunkSize depends on api's limits
+        //blockchair uo to 25000, etherscan ? need research
+        $chunkSize = 30;
         $walletService = app()->make(WalletService::class, ['currencyId' => $currencyId]);
         Wallet::where('type', $currencyId)->with('lastBalance')
             ->chunk($chunkSize, function (Collection $wallets) use ($walletService) {
