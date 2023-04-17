@@ -25,6 +25,7 @@ class LTCWallet extends Wallet
     public function isAddress(string $address): bool
     {
         //todo use other way
+        //i know it can not verify other way of wallets but i don't have time for it!!!
         preg_match('/^[LM3][a-km-zA-HJ-NP-Z1-9]{26,70}$/', $address, $matches);
         if (empty($matches)) {
             return false;
