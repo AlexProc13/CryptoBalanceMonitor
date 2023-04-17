@@ -27,7 +27,7 @@ class LTCWallet extends Wallet
         //todo use other way
         preg_match('/^[LM3][a-km-zA-HJ-NP-Z1-9]{26,70}$/', $address, $matches);
         if (empty($matches)) {
-            return true;
+            return false;
         }
         return true;
     }

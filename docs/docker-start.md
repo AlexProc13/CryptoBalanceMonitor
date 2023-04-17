@@ -27,7 +27,7 @@ docker-compose run --rm --no-deps php php artisan key:generate
 ```
 - You can `UP` php container and dependent containers. Waiting for loading data and then press ```ctrl+c```
 ```bash
-docker-compose up php
+docker-compose up mysql
 ```
 - run migrations
 ```bash
