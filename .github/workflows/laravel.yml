@@ -95,8 +95,9 @@ jobs:
       - name: Migrate
         env:
           DB_PORT: ${{ job.services.mysql.ports['3306'] }}
-          RAW_LOG_PORT: ${{ job.services.mysql.ports['3306'] }}
         run: php artisan migrate
 
       - name: Execute tests (Unit and Feature tests) via PHPUnit
+        env:
+          DB_PORT: ${{ job.services.mysql.ports['3306'] }}
         run: vendor/bin/phpunit
