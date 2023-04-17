@@ -32,7 +32,7 @@ abstract class Wallet
             $balance = $wallet->lastBalance->balance;
             $currentBalance = $balancePerAddress[$wallet->address];
             //update only if changed
-            if ($balance === $currentBalance) {
+            if ($balance === (string)$currentBalance) {
                 continue;
             }
 

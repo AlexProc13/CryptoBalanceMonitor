@@ -19,7 +19,7 @@ class WalletController extends Controller
      */
     public function index(): array
     {
-        $perPage = 100;
+        $perPage = 10;
         $wallets = Wallet::with('lastBalance')->paginate($perPage);
         return [
             'status' => true,
