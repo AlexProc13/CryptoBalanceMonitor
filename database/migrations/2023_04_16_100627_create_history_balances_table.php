@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('wallet_id');
             $table->foreign('wallet_id')->references('id')
-                ->on('wallets')->onDelete('cascade');;
+                ->on('wallets')->onDelete('cascade');
             $table->unsignedDecimal('balance',50, 0);
             $table->timestamps();
 

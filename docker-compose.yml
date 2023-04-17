@@ -69,3 +69,19 @@ services:
             - php
         networks:
             - monitor
+    mysql-test:
+        image: mysql:5.7
+        container_name: monitor-mysql-test
+        restart: unless-stopped
+        tty: true
+        ports:
+            - "33101:3306"
+        volumes:
+            - ./storage/app/docker/mysql-log:/var/lib/mysql-test
+        environment:
+            MYSQL_DATABASE: 'test'
+            MYSQL_USER: 'test'
+            MYSQL_PASSWORD: 'test'
+            MYSQL_ROOT_PASSWORD: 'test'
+        networks:
+            - monitor
