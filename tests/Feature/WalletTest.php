@@ -86,4 +86,26 @@ class WalletTest extends TestCase
             'address' => $data['address'],
         ]);
     }
+
+    public function testGetWalletStoreError(): void
+    {
+        //todo by facker
+        $addresses = [
+            'Wrong address1',
+            'Wrong address2'
+        ];
+        $data = ['currency' => 'LTC', 'address' => fake()->randomElement($addresses),];
+        $response = $this->json(Request::METHOD_POST, route('wallets.index'), $data);
+        $response
+            ->assertStatus(Response::HTTP_OK)
+            ->assertJsonStructure([
+                'status'
+            ])
+            ->assertJsonFragment(['status' => false])
+            ->assertStatus(200);
+
+        $this->assertDatabaseMissing('wallets', [
+            'address' => $data['address'],
+        ]);
+    }
 }
