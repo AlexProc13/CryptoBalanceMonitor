@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\WalletResource;
+use App\Http\Resources\WalletCollection;
 use App\Models\Wallet;
 use App\Servises\Wallets\Currencies\Wallet as WalletService;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -16,19 +18,11 @@ class WalletController extends Controller
      *
      * @return array
      */
-    public function index(): array
+    public function index(): ResourceCollection
     {
         $perPage = 10;
         $wallets = Wallet::with('lastBalance')->paginate($perPage);
-        return [
-            'status' => true,
-            'total' => $wallets->total(),
-            'perPage' => $wallets->perPage(),
-            'hasPages' => $wallets->hasPages(),
-            'currentPage' => $wallets->currentPage(),
-            'previousPageUrl' => $wallets->previousPageUrl(),
-            'data' => WalletResource::collection($wallets),
-        ];
+        return new WalletCollection($wallets);
     }
 
     /**
