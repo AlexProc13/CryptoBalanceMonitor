@@ -2,8 +2,12 @@
 
 namespace App\Servises\Wallets\Currencies;
 
+use Exception;
+use App\Models\Wallet as WalletModel;
 use App\Models\HistoryBalance;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 
 abstract class Wallet
 {
@@ -41,6 +45,22 @@ abstract class Wallet
                 'balance' => $currentBalance
             ]);
         }
+
+        return true;
+    }
+
+    public function store(Request $request): bool
+    {
+        $currencies = config('wallets.currencies');
+        //check is address related for currency network
+        if (!$this->isAddress($request->address)) {
+            throw new Exception('Wrong address for this network');
+        }
+        //create wallet
+        DB::beginTransaction();
+        WalletModel::create(['type' => $currencies[$request->currency], 'address' => $request->address]);
+        //...some actions
+        DB::commit();
 
         return true;
     }

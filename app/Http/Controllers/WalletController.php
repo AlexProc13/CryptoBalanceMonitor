@@ -6,7 +6,6 @@ use App\Http\Resources\WalletResource;
 use App\Models\Wallet;
 use App\Servises\Wallets\Currencies\Wallet as WalletService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -41,25 +40,16 @@ class WalletController extends Controller
      */
     public function store(Request $request): array
     {
-        $currencies = config('wallets.currencies');
         $validator = Validator::make($request->all(), [
             'address' => ['required', 'max:255'],
-            'currency' => ['required', Rule::in(array_keys($currencies))],
+            'currency' => ['required', Rule::in(array_keys(config('wallets.currencies')))],
         ]);
         if ($validator->fails()) {
             return ['status' => false];
         }
 
         $walletService = app()->make(WalletService::class, ['currency' => $request->currency]);
-        //check is address related for currency network
-        if (!$walletService->isAddress($request->address)) {
-            return ['status' => false, 'msg' => 'Wrong address for this network'];
-        }
-        //create wallet
-        DB::beginTransaction();
-        Wallet::create(['type' => $currencies[$request->currency], 'address' => $request->address]);
-        //...some actions
-        DB::commit();
+        $walletService->store($request);
 
         return ['status' => true];
     }
